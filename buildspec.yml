@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+  pre_build:
+    commands:
+      - echo "Setting JAVA_HOME..."
+      - export JAVA_HOME=/usr/lib/jvm/java-17-amazon-corretto
+      - echo "Installing Maven..."
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - mvn clean package -DskipTests
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+      - mv target/*.jar application.jar
+
+artifacts:
+  files:
+    - application.jar
+    - Procfile
+    - .ebextensions/**/*
+  discard-paths: no
+
+cache:
+  paths:
+    - '/root/.m2/**/*'

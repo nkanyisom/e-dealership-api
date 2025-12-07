@@ -1,0 +1,885 @@
+{
+  "info": {
+    "name": "E-Dealership API",
+    "description": "Complete API collection for the E-Dealership Management System. This collection includes all endpoints for managing dealerships, car models, and pricing information with sample requests and response examples.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9091",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Dealership Management",
+      "description": "APIs for managing car dealerships",
+      "item": [
+        {
+          "name": "Get All Dealerships",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships"]
+            },
+            "description": "Retrieve a list of all registered dealerships"
+          }
+        },
+        {
+          "name": "Get Dealership by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "1"]
+            },
+            "description": "Retrieve a specific dealership by its unique identifier"
+          }
+        },
+        {
+          "name": "Get Dealership by Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/search/name/Premium Motors",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "search", "name", "Premium Motors"]
+            },
+            "description": "Find a dealership by its name (case-insensitive)"
+          }
+        },
+        {
+          "name": "Search Dealerships by Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/search/location?location=New York",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "search", "location"],
+              "query": [
+                {
+                  "key": "location",
+                  "value": "New York"
+                }
+              ]
+            },
+            "description": "Find dealerships in a specific location"
+          }
+        },
+        {
+          "name": "Get Dealerships with Car Inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/with-cars",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "with-cars"]
+            },
+            "description": "Retrieve only dealerships that have car models in stock"
+          }
+        },
+        {
+          "name": "Search by Location and Car Make",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/search/location-and-make?location=California&make=Toyota",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "search", "location-and-make"],
+              "query": [
+                {
+                  "key": "location",
+                  "value": "California"
+                },
+                {
+                  "key": "make",
+                  "value": "Toyota"
+                }
+              ]
+            },
+            "description": "Find dealerships in a location that carry a specific car make"
+          }
+        },
+        {
+          "name": "Create New Dealership",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Elite Auto Gallery\",\n  \"location\": \"Miami, FL\",\n  \"phoneNumber\": \"+1-305-555-0123\",\n  \"email\": \"info@eliteautogallery.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships"]
+            },
+            "description": "Register a new dealership in the system"
+          }
+        },
+        {
+          "name": "Update Dealership",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Elite Auto Gallery\",\n  \"location\": \"Miami Beach, FL\",\n  \"phoneNumber\": \"+1-305-555-0124\",\n  \"email\": \"contact@eliteautogallery.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "1"]
+            },
+            "description": "Update the details of an existing dealership"
+          }
+        },
+        {
+          "name": "Delete Dealership",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "1"]
+            },
+            "description": "Remove a dealership from the system"
+          }
+        },
+        {
+          "name": "Count Dealerships by Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/dealerships/count/location?location=California",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "dealerships", "count", "location"],
+              "query": [
+                {
+                  "key": "location",
+                  "value": "California"
+                }
+              ]
+            },
+            "description": "Get the number of dealerships in a specific location"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Car Model Management",
+      "description": "APIs for managing car models and inventory",
+      "item": [
+        {
+          "name": "Get All Car Models",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models"]
+            },
+            "description": "Retrieve a list of all car models in the system"
+          }
+        },
+        {
+          "name": "Get Car Model by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "1"]
+            },
+            "description": "Retrieve a specific car model by its unique identifier"
+          }
+        },
+        {
+          "name": "Get Car Models by Make",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/make/Toyota",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "make", "Toyota"]
+            },
+            "description": "Retrieve all car models from a specific manufacturer"
+          }
+        },
+        {
+          "name": "Get Car Models by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/category/SUV",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "category", "SUV"]
+            },
+            "description": "Find car models in a specific category (SEDAN, SUV, TRUCK, etc.)"
+          }
+        },
+        {
+          "name": "Get Car Models by Year",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/year/2024",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "year", "2024"]
+            },
+            "description": "Retrieve all car models from a specific model year"
+          }
+        },
+        {
+          "name": "Get Car Models by Year Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/year-range?startYear=2022&endYear=2024",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "year-range"],
+              "query": [
+                {
+                  "key": "startYear",
+                  "value": "2022"
+                },
+                {
+                  "key": "endYear",
+                  "value": "2024"
+                }
+              ]
+            },
+            "description": "Find car models within a specific year range"
+          }
+        },
+        {
+          "name": "Search by Make and Model",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/make-and-model?make=Honda&model=Civic",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "make-and-model"],
+              "query": [
+                {
+                  "key": "make",
+                  "value": "Honda"
+                },
+                {
+                  "key": "model",
+                  "value": "Civic"
+                }
+              ]
+            },
+            "description": "Find car models matching both make and model name"
+          }
+        },
+        {
+          "name": "Get Car Models by Dealership",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/dealership/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "dealership", "1"]
+            },
+            "description": "Retrieve all car models available at a specific dealership"
+          }
+        },
+        {
+          "name": "Search by Make and Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/make-and-category?make=BMW&category=SUV",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "make-and-category"],
+              "query": [
+                {
+                  "key": "make",
+                  "value": "BMW"
+                },
+                {
+                  "key": "category",
+                  "value": "SUV"
+                }
+              ]
+            },
+            "description": "Find car models matching both make and category"
+          }
+        },
+        {
+          "name": "Get Latest Car Models",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/latest",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "latest"]
+            },
+            "description": "Retrieve the newest car models from each make"
+          }
+        },
+        {
+          "name": "Search by Description",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/description?keyword=luxury",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "description"],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "luxury"
+                }
+              ]
+            },
+            "description": "Find car models containing specific keywords in their description"
+          }
+        },
+        {
+          "name": "Get Car Models by Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/search/location?location=California",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "search", "location"],
+              "query": [
+                {
+                  "key": "location",
+                  "value": "California"
+                }
+              ]
+            },
+            "description": "Find car models available in dealerships at a specific location"
+          }
+        },
+        {
+          "name": "Create New Car Model",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"make\": \"Tesla\",\n  \"model\": \"Model 3\",\n  \"modelYear\": 2024,\n  \"category\": \"SEDAN\",\n  \"description\": \"Electric luxury sedan with autopilot capabilities\",\n  \"dealership\": {\n    \"id\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models"]
+            },
+            "description": "Add a new car model to the system"
+          }
+        },
+        {
+          "name": "Update Car Model",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"make\": \"Tesla\",\n  \"model\": \"Model 3 Performance\",\n  \"modelYear\": 2024,\n  \"category\": \"SEDAN\",\n  \"description\": \"High-performance electric luxury sedan with enhanced autopilot\",\n  \"dealership\": {\n    \"id\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "1"]
+            },
+            "description": "Update the details of an existing car model"
+          }
+        },
+        {
+          "name": "Delete Car Model",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "1"]
+            },
+            "description": "Remove a car model from the system"
+          }
+        },
+        {
+          "name": "Count Car Models by Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-models/count/category/SUV",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-models", "count", "category", "SUV"]
+            },
+            "description": "Get the number of car models in a specific category"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Car Price Management",
+      "description": "APIs for managing car pricing information",
+      "item": [
+        {
+          "name": "Get All Car Prices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices"]
+            },
+            "description": "Retrieve a list of all car pricing information"
+          }
+        },
+        {
+          "name": "Get Car Price by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "1"]
+            },
+            "description": "Retrieve a specific car price by its unique identifier"
+          }
+        },
+        {
+          "name": "Get Prices by Car Model",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/car-model/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "car-model", "1"]
+            },
+            "description": "Retrieve all pricing information for a specific car model"
+          }
+        },
+        {
+          "name": "Get Prices by Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/search/type/MSRP",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "search", "type", "MSRP"]
+            },
+            "description": "Find car prices of a specific type (e.g., MSRP, dealer, sale)"
+          }
+        },
+        {
+          "name": "Get Prices by Price Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/search/price-range?minPrice=25000&maxPrice=75000",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "search", "price-range"],
+              "query": [
+                {
+                  "key": "minPrice",
+                  "value": "25000"
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "75000"
+                }
+              ]
+            },
+            "description": "Find car prices within a specified price range"
+          }
+        },
+        {
+          "name": "Get Active Prices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "active"]
+            },
+            "description": "Retrieve currently active pricing information"
+          }
+        },
+        {
+          "name": "Get Active Prices for Car Model",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/active/car-model/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "active", "car-model", "1"]
+            },
+            "description": "Retrieve currently active prices for a specific car model"
+          }
+        },
+        {
+          "name": "Get Latest Price by Model and Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/latest/car-model/1/type/MSRP",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "latest", "car-model", "1", "type", "MSRP"]
+            },
+            "description": "Retrieve the most recent price for a specific car model and price type"
+          }
+        },
+        {
+          "name": "Get Current Price by Model and Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/current/car-model/1/type/DEALER",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "current", "car-model", "1", "type", "DEALER"]
+            },
+            "description": "Retrieve the current active price for a specific car model and price type"
+          }
+        },
+        {
+          "name": "Get Prices by Date Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/search/date-range?startDate=2023-01-01&endDate=2023-12-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "search", "date-range"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2023-01-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2023-12-31"
+                }
+              ]
+            },
+            "description": "Find car prices within a specific date range"
+          }
+        },
+        {
+          "name": "Get Average Price by Make",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/average/make/Toyota",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "average", "make", "Toyota"]
+            },
+            "description": "Calculate the average price for all models of a specific car make"
+          }
+        },
+        {
+          "name": "Create New Car Price",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carModel\": {\n    \"id\": 1\n  },\n  \"price\": 45000.00,\n  \"priceType\": \"MSRP\",\n  \"effectiveDate\": \"2024-01-01\",\n  \"expiryDate\": \"2024-12-31\",\n  \"notes\": \"Manufacturer's suggested retail price for 2024 model\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices"]
+            },
+            "description": "Add new pricing information for a car model"
+          }
+        },
+        {
+          "name": "Update Car Price",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"carModel\": {\n    \"id\": 1\n  },\n  \"price\": 47000.00,\n  \"priceType\": \"MSRP\",\n  \"effectiveDate\": \"2024-01-01\",\n  \"expiryDate\": \"2024-12-31\",\n  \"notes\": \"Updated manufacturer's suggested retail price for 2024 model\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "1"]
+            },
+            "description": "Update the details of an existing car price"
+          }
+        },
+        {
+          "name": "Delete Car Price",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "1"]
+            },
+            "description": "Remove a car price from the system"
+          }
+        },
+        {
+          "name": "Count Prices by Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/car-prices/count/type/MSRP",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "car-prices", "count", "type", "MSRP"]
+            },
+            "description": "Get the number of price entries for a specific price type"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sample Test Scenarios",
+      "description": "Pre-configured test scenarios for common use cases",
+      "item": [
+        {
+          "name": "Complete Workflow - Add Dealership to Car Sale",
+          "description": "A complete test workflow that demonstrates the full API functionality",
+          "item": [
+            {
+              "name": "1. Create Test Dealership",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Test Auto Center\",\n  \"location\": \"Test City, TC\",\n  \"phoneNumber\": \"+1-555-000-0000\",\n  \"email\": \"test@autocenter.com\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/dealerships",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "dealerships"]
+                }
+              }
+            },
+            {
+              "name": "2. Add Car Model to Dealership",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"make\": \"TestCar\",\n  \"model\": \"TestModel\",\n  \"modelYear\": 2024,\n  \"category\": \"SEDAN\",\n  \"description\": \"Test vehicle for demonstration\",\n  \"dealership\": {\n    \"id\": \"{{dealershipId}}\"\n  }\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/car-models",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "car-models"]
+                }
+              }
+            },
+            {
+              "name": "3. Set Car Price",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"carModel\": {\n    \"id\": \"{{carModelId}}\"\n  },\n  \"price\": 35000.00,\n  \"priceType\": \"MSRP\",\n  \"effectiveDate\": \"2024-01-01\",\n  \"notes\": \"Test pricing for demonstration\"\n}"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/car-prices",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "car-prices"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Utility & Admin",
+      "description": "Utility endpoints for system information",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            },
+            "description": "Check if the API is running and healthy"
+          }
+        },
+        {
+          "name": "API Documentation (OpenAPI JSON)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/v3/api-docs",
+              "host": ["{{baseUrl}}"],
+              "path": ["v3", "api-docs"]
+            },
+            "description": "Get the complete OpenAPI specification in JSON format"
+          }
+        },
+        {
+          "name": "Swagger UI",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/swagger-ui.html",
+              "host": ["{{baseUrl}}"],
+              "path": ["swagger-ui.html"]
+            },
+            "description": "Access the Swagger UI for interactive API testing"
+          }
+        },
+        {
+          "name": "H2 Database Console",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/h2-console",
+              "host": ["{{baseUrl}}"],
+              "path": ["h2-console"]
+            },
+            "description": "Access the H2 database console (JDBC URL: jdbc:h2:mem:dealership_db)"
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Set up environment variables for testing",
+          "console.log('E-Dealership API Collection - Pre-request setup');",
+          "",
+          "// Common variables that can be used across requests",
+          "pm.environment.set('timestamp', Date.now());",
+          "pm.environment.set('randomString', Math.random().toString(36).substring(7));"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Common test scripts for all requests",
+          "pm.test('Response status code is valid', function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204, 404, 409]);",
+          "});",
+          "",
+          "pm.test('Response time is acceptable', function () {",
+          "    pm.expect(pm.response.responseTime).to.be.below(5000);",
+          "});",
+          "",
+          "// Extract IDs from successful POST responses for chaining",
+          "if (pm.response.code === 201 && pm.response.json()) {",
+          "    const responseJson = pm.response.json();",
+          "    if (responseJson.id) {",
+          "        if (pm.request.url.toString().includes('/dealerships')) {",
+          "            pm.environment.set('dealershipId', responseJson.id);",
+          "        } else if (pm.request.url.toString().includes('/car-models')) {",
+          "            pm.environment.set('carModelId', responseJson.id);",
+          "        } else if (pm.request.url.toString().includes('/car-prices')) {",
+          "            pm.environment.set('carPriceId', responseJson.id);",
+          "        }",
+          "    }",
+          "}"
+        ]
+      }
+    }
+  ]
+}

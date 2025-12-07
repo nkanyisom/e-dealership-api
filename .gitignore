@@ -1,0 +1,40 @@
+# Compiled class files
+*.class
+target/
+
+# Log files
+*.log
+
+# Maven
+.mvn/
+mvnw
+mvnw.cmd
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Spring Boot
+spring-boot-devtools.properties
+
+# Environment variables
+.env
+.env.local
+
+# Elastic Beanstalk
+.elasticbeanstalk/
+application.zip
+
+# AWS
+.aws/
+
+# Docker
+*.tar
